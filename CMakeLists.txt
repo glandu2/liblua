@@ -89,3 +89,7 @@ if(BUILD_SHARED_LIBS)
 		RUNTIME DESTINATION ./
 		LIBRARY DESTINATION ./)
 endif()
+
+if(WIN32)
+	set_target_properties(lua PROPERTIES UNITY_BUILD OFF)
+endif()
