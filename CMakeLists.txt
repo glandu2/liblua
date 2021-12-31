@@ -93,3 +93,13 @@ endif()
 if(WIN32)
 	set_target_properties(lua PROPERTIES UNITY_BUILD OFF)
 endif()
+
+if(UNIX)
+include(CheckIncludeFile)
+check_include_file("readline/readline.h" HAVE_READLINE_H)
+endif()
+
+if(NOT UNIX OR HAVE_READLINE_H)
+	add_executable(lua_shell src/lua.c)
+	target_link_libraries(lua_shell PRIVATE lua)
+endif()
